@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript va jQuery</title>
+    <style>
+        body{
+            text-align: center;
+            background-color: black;
+        }
+        button {
+            background-color: orange;
+            color: white;
+            border: 2px outside orange;
+        }
+
+        input, button {
+            outline: none;
+        }
+
+        #error {
+            color: red;
+        }
+
+        .imgCalculator {
+            height: 100%;
+            width: 100%;
+        }
+
+        .calculatorPage {
+            display: inline-block;
+            border: 2px solid white;
+            margin: 10px 0 0 0;
+            padding: 0 30px 30px 30px;
+        }
+
+        .plus {
+            zoom: 150%;
+            color: white;
+            margin-top: 30px;
+        }
+
+        .minus {
+            zoom: 150%;
+            color: white;
+            margin-top: 30px;
+        }
+
+        .multiplication {
+            zoom: 150%;
+            color: white;
+            margin-top: 30px;
+        }
+
+        .divicion {
+            zoom: 150%;
+            color: white;
+            margin-top: 30px;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script>
+        let onReady = function() {
+            jQuery('#errorPlus, #errorMinus, #errorMult, #errorDiv').hide();
+
+            jQuery('button').on('mousedown', function() {
+                jQuery(this).css('border-style','inset');
+            });
+
+            
+            jQuery('button').on('mouseup', function() {
+                jQuery(this).css('border-style','outset');
+
+                let plus1 = jQuery('#plus1',).val();
+                let plus2 = jQuery('#plus2',).val();
+                let minus1 = jQuery('#minus1',).val();
+                let minus2 = jQuery('#minus2',).val();
+                let mult1 = jQuery('#mult1',).val();
+                let mult2 = jQuery('#mult2',).val();
+                let div1 = jQuery('#div1',).val();
+                let div2 = jQuery('#div2',).val();
+
+                plus1 = Number(plus1);
+                plus2 = Number(plus2);
+                minus1 = Number(minus1);
+                minus2 = Number(minus2);
+                mult1 = Number(mult1);
+                mult2 = Number(mult2);
+                div1 = Number(div1);
+                div2 = Number(div2);
+
+                if (isNaN(plus1)|| isNaN(plus2)) {
+                    jQuery('#errorPlus').fadeIn();
+                    jQuery('#resultPlus').html(0);
+                }else {
+                    jQuery('#errorPlus').fadeOut();
+                    jQuery('#resultPlus').html(plus1 + plus2);
+                }
+
+                if (isNaN(minus1)|| isNaN(minus2)) {
+                    jQuery('#errorMinus').fadeIn();
+                    jQuery('#resultMinus').html(0);
+                }else {
+                    jQuery('#errorMinus').fadeOut();
+                    jQuery('#resultMinus').html(minus1 - minus2);
+                }
+
+                if (isNaN(mult1)|| isNaN(mult2)) {
+                    jQuery('#errorMult').fadeIn();
+                    jQuery('#resultMult').html(0);
+                }else {
+                    jQuery('#errorMult').fadeOut();
+                    jQuery('#resultMult').html(mult1 * mult2);
+                }
+
+                if (isNaN(div1)|| isNaN(div2)) {
+                    jQuery('#errorDiv').fadeIn();
+                    jQuery('#resultDiv').html(0);
+                }else {
+                    jQuery('#errorDiv').fadeOut();
+                    jQuery('#resultDiv').html(div1 / div2);
+                }
+
+            });
+        }         
+
+        jQuery(onReady)
+    </script>
+
+</head>
+<body>
+    <div class="imgCalculator">
+        <img class="imgCalculator" src="img/calculator.jpg" alt="calculator">
+    </div>
+
+    <div class="calculatorPage">
+        <div class="plus">
+            <input id="plus1" type="text" size="10">
+            <span>+</span>
+            <input id="plus2" type="text" size="10">
+            <button>=</button>
+            <span id="resultPlus">0</span>
+            <div id="errorPlus">Iltimos raqam kiriting!</div>
+        </div>
+
+        <div class="minus">
+            <input id="minus1" type="text" size="10">
+            <span>-</span>
+            <input id="minus2" type="text" size="10">
+            <button>=</button>
+            <span id="resultMinus">0</span>
+            <div id="errorMinus">Iltimos raqam kiriting!</div>
+        </div>
+
+        <div class="multiplication">
+            <input id="mult1" type="text" size="10">
+            <span>*</span>
+            <input id="mult2" type="text" size="10">
+            <button>=</button>
+            <span id="resultMult">0</span>
+            <div id="errorMult">Iltimos raqam kiriting!</div>
+        </div>
+
+        <div class="divicion">
+            <input id="div1" type="text" size="10">
+            <span>/</span>
+            <input id="div2" type="text" size="10">
+            <button>=</button>
+            <span id="resultDiv">0</span>
+            <div id="errorDiv">Iltimos raqam kiriting!</div>
+        </div>
+    </div>
+</body>
+</html>
